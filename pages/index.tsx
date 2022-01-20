@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import * as Styled from "../components/styles/index";
+import * as Styled from "../components/Styles";
 import TopBar from "../components/Topbar/intex";
 
 const Home: NextPage = () => {

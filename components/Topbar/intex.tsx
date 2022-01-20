@@ -1,4 +1,4 @@
-import * as Styled from "../styles/index";
+import * as Styled from "../Styles";
 import Logo from "/public/img/Logo.png";
 import Form from "../Form";
 import { Pivot as Hamburger } from "hamburger-react";

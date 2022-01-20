@@ -1,4 +1,4 @@
-import * as Styled from "../styles/index";
+import * as Styled from "../Styles";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -9,14 +9,11 @@ type Props = {
 };
 function Form({ visible }: Props) {
   const [name, setName] = useState("");
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    alert(`The name you entered was: ${name}`);
-  };
+
   return (
     <>
       <Styled.FormContainer visible={visible}>
-        <form onSubmit={handleSubmit}>
+        <form>
           <FormControl variant="outlined">
             <label>Países</label>
             <Select displayEmpty value="">
