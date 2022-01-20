@@ -1,12 +1,10 @@
 import type { NextPage } from "next";
-import * as Styled from "../components/Styles";
-import TopBar from "../components/Topbar/intex";
+import Layout from "../components/Layout";
 
 const Home: NextPage = () => {
   return (
     <>
-      <TopBar />
-      <Styled.CardsContainer />
+      <Layout />
     </>
   );
 };

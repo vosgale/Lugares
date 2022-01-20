@@ -5,6 +5,9 @@ interface Props {
 }
 //TopBar=================================================
 export const TopBar = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,6 +53,7 @@ export const FormContainer = styled.div<Props>`
     transform: translateX(1000px);
   `}
     position: fixed;
+    margin-top: 85px;
     height: calc(100vh - 85px);
     transition: 0.5s ease;
     display: flex;
@@ -71,9 +75,28 @@ export const Btn = styled(Button)`
     background-color: #01831e;
   }
 `;
-
+export const Layout = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
 export const CardsContainer = styled.section`
-width: 100%;
-height: calc(100vh - 288px);
-border: 2px solid red;
+  width: 100%;
+  min-height: calc(100vh - 288px); */
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 50px 30px;
+  justify-content: center;
+`;
+export const Card = styled.div`
+  /* height: 16.361vw; */
+  min-height: 250px;
+  min-width: 250px;
+  /* width: 16.361vw; */
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px #00000040;
 `;

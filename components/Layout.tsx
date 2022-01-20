@@ -1,11 +1,14 @@
 import TopBar from "./Topbar/intex";
 import * as Styled from "./Styles";
+import CardsList from "./CardsList/intex";
 
 function Layout() {
   return (
     <>
-      <TopBar />
-      <Styled.CardsContainer />
+      <Styled.Layout>
+        <TopBar />
+        <CardsList />
+      </Styled.Layout>
     </>
   );
 }
