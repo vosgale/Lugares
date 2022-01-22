@@ -93,31 +93,44 @@ export const CardsContainer = styled.section`
 `;
 export const Card = styled.div`
   /* height: 16.361vw; */
-  min-height: 250px;
-  min-width: 250px;
   /* width: 16.361vw; */
+  height: 250px;
+  width: 250px;
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px #00000040;
   display: flex;
   flex-direction: column;
-  padding: 14px 30px;
-  .card__header{
+  padding: 25px 10px;
+  .card__header {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid #ABABAB;
+    border-bottom: 1px solid #ababab;
   }
-  .card__flag-container{
-     height: 100%;
-     img{
-       object-fit: contain;
-     }
-     h3{
-       font-weight: 700;
-       color:#4F9419;
-       margin: 16px 0 10px;
-     }
+  .card__flag-container {
+    height: 100%;
+    img {
+      object-fit: contain;
+      z-index: 0;
+    }
+    h3 {
+      font-weight: 700;
+      color: #4f9419;
+      text-transform: uppercase;
+      margin: 16px 0 10px;
+    }
+  }
+  .card__body {
+    font-size: 16px;
+    font-weight: 400;
+    padding: 43px 6px 50px;
+    line-height: 18.75px;
+    p {
+      &:nth-child(1) {
+        margin-bottom: 11px;
+      }
+    }
   }
 `;

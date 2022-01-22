@@ -8,21 +8,22 @@ import { LocalDB } from "../../pages/api/fetchers";
 import { useToast } from "../../contexts/ToastContext";
 
 type Props = {
-  visible: Boolean;
+  visible: boolean;
+  setReload: any;
+  reload: boolean;
 };
 type Countries = {
   name: string;
   flag: string;
 };
-function Form({ visible }: Props) {
-  const toast = useToast();
+function Form({ visible, setReload, reload }: Props) {
   const [place, setPlace] = useState("");
   const [meta, setMeta] = useState("");
   const [countries, setCountries] = useState<Countries[]>([]);
-  const [selectedCountrie, setSelectedCountrie] = useState<
-    number | undefined
-  >();
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCountry, setSelectedCountry] = useState<number | undefined>();
+  const toast = useToast();
+
   const clearInputs = () => {
     Array.from(document.querySelectorAll("input")).forEach(
       (input) => (input.value = "")
@@ -31,6 +32,7 @@ function Form({ visible }: Props) {
       (select) => (select.value = "")
     );
   };
+
   useEffect(() => {
     const fetchCountries = async () => {
       const response = await fetch(`https://restcountries.com/v2/all`);
@@ -51,7 +53,7 @@ function Form({ visible }: Props) {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const values = {
-      ...countries[Number(selectedCountrie)],
+      ...countries[Number(selectedCountry)],
       place: place,
       meta: meta,
     };
@@ -60,6 +62,7 @@ function Form({ visible }: Props) {
     if (create.status === 201) {
       toast("Local adicionado a agenda", "success");
       clearInputs();
+      setReload(!reload);
     } else toast("Erro ao adicionar local", "error");
   };
   return (
@@ -72,9 +75,9 @@ function Form({ visible }: Props) {
               native
               disabled={isLoading ?? false}
               displayEmpty
-              value={selectedCountrie}
+              value={selectedCountry}
               onChange={(event) => {
-                setSelectedCountrie(event.target.value as number);
+                setSelectedCountry(event.target.value as number);
               }}
             >
               <option value="">Selecione</option>
@@ -88,7 +91,7 @@ function Form({ visible }: Props) {
           <FormControl>
             <label>Local</label>
             <TextField
-              disabled={!selectedCountrie}
+              disabled={!selectedCountry}
               id="outlined-size-small"
               placeholder="Digite o local que deseja conhecer"
               size="small"
@@ -101,7 +104,7 @@ function Form({ visible }: Props) {
             <InputMask
               mask="99/9999"
               maskChar={null}
-              disabled={place === "" && !selectedCountrie}
+              disabled={place === "" && !selectedCountry}
               required
               id="outlined-size-small"
               placeholder="mês/ano"

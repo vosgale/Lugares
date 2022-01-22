@@ -2,13 +2,18 @@ import TopBar from "./Topbar/intex";
 import * as Styled from "./Styles";
 import CardsList from "./CardsList/intex";
 import { ToastProvider } from "../contexts/ToastContext";
+import Form from "./Form";
+import { useState } from "react";
 function Layout() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [reload, setReload] = useState<boolean>(false);
   return (
     <>
       <ToastProvider>
         <Styled.Layout>
-          <TopBar />
-          <CardsList />
+          <TopBar isOpen={isOpen} setIsOpen={setIsOpen} />
+          <Form visible={isOpen} setReload={setReload} reload={reload} />
+          <CardsList reload={reload} />
         </Styled.Layout>
       </ToastProvider>
     </>
