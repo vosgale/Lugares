@@ -99,4 +99,25 @@ export const Card = styled.div`
   background: #ffffff;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px #00000040;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 30px;
+  .card__header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #ABABAB;
+  }
+  .card__flag-container{
+     height: 100%;
+     img{
+       object-fit: contain;
+     }
+     h3{
+       font-weight: 700;
+       color:#4F9419;
+       margin: 16px 0 10px;
+     }
+  }
 `;
