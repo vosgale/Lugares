@@ -70,6 +70,7 @@ function Form({ visible, setVisible, setReload }: Props) {
           <FormControl variant="outlined">
             <label className="custom-label">Países</label>
             <Select
+              required
               native
               disabled={isLoading ?? false}
               displayEmpty
@@ -102,8 +103,8 @@ function Form({ visible, setVisible, setReload }: Props) {
             <InputMask
               mask="99/9999"
               maskChar={null}
-              disabled={place === "" && !selectedCountry}
               required
+              disabled={!selectedCountry}
               id="outlined-size-small"
               placeholder="mês/ano"
               value={meta}
