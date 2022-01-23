@@ -3,36 +3,27 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import InputMask from "react-input-mask";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LocalDB } from "../../pages/api/fetchers";
 import { useToast } from "../../contexts/ToastContext";
 
 type Props = {
   visible: boolean;
   setReload: any;
-  reload: boolean;
 };
 type Countries = {
   name: string;
   flag: string;
 };
-function Form({ visible, setReload, reload }: Props) {
+
+function Form({ visible, setReload }: Props) {
   const [place, setPlace] = useState("");
   const [meta, setMeta] = useState("");
   const [countries, setCountries] = useState<Countries[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCountry, setSelectedCountry] = useState<number | undefined>();
   const toast = useToast();
-
-  const clearInputs = () => {
-    Array.from(document.querySelectorAll("input")).forEach(
-      (input) => (input.value = "")
-    );
-    Array.from(document.querySelectorAll("select")).forEach(
-      (select) => (select.value = "")
-    );
-  };
-
+  const formRef = useRef<HTMLFormElement>(null);
   useEffect(() => {
     const fetchCountries = async () => {
       const response = await fetch(`https://restcountries.com/v2/all`);
@@ -50,6 +41,11 @@ function Form({ visible, setReload, reload }: Props) {
     fetchCountries();
   }, []);
 
+  const resetForm = () => {
+    setSelectedCountry(undefined);
+    setReload((prev: boolean) => !prev);
+    setMeta("");
+  };
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const values = {
@@ -58,17 +54,17 @@ function Form({ visible, setReload, reload }: Props) {
       meta: meta,
     };
     const create = await LocalDB.CREATE(values);
-
     if (create.status === 201) {
       toast("Local adicionado a agenda", "success");
-      clearInputs();
-      setReload(!reload);
+      formRef.current?.reset();
+      resetForm();
     } else toast("Erro ao adicionar local", "error");
   };
+
   return (
     <>
       <Styled.FormContainer visible={visible}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} ref={formRef}>
           <FormControl variant="outlined">
             <label>Países</label>
             <Select
@@ -80,7 +76,7 @@ function Form({ visible, setReload, reload }: Props) {
                 setSelectedCountry(event.target.value as number);
               }}
             >
-              <option value="">Selecione</option>
+              <option value={undefined}>Selecione</option>
               {countries.map((item, index) => (
                 <option value={index} key={item.name}>
                   {item.name}
@@ -108,7 +104,8 @@ function Form({ visible, setReload, reload }: Props) {
               required
               id="outlined-size-small"
               placeholder="mês/ano"
-              onBlur={(event) => setMeta(event.target.value)}
+              value={meta}
+              onChange={(event) => setMeta(event.target.value)}
             >
               {(inputProps: any) => <TextField size="small" {...inputProps} />}
             </InputMask>

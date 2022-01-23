@@ -8,6 +8,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useToast } from "../../contexts/ToastContext";
+import EditForm from "./editForm";
 import {
   Button,
   DialogActions,
@@ -24,10 +25,23 @@ type Countries = {
 };
 type Props = {
   reload: boolean;
+  setReload: any;
 };
-function CardsList({ reload }: Props) {
+
+type Selected = {
+  id: number;
+  place: string;
+  meta: string;
+  name: string;
+  flag: string;
+};
+type toDelete = {
+  id: number;
+};
+function CardsList({ reload, setReload }: Props) {
   const [countries, setCountries] = useState<Countries[]>([]);
-  const [selected, setSelected] = useState<number | undefined>();
+  const [selected, setSelected] = useState<Selected | undefined>();
+  const [toDelete, setToDelete] = useState<toDelete | undefined>();
   const toast = useToast();
   const fetchCountries = async () => {
     const response = await LocalDB.LIST();
@@ -44,15 +58,15 @@ function CardsList({ reload }: Props) {
       toast("Local excluído", "success");
       fetchCountries();
     } else toast("Erro ao excluír local", "error");
-    setSelected(undefined);
+    setToDelete(undefined);
   };
 
   return (
     <>
       <Styled.CardsContainer>
         <Dialog
-          onClose={() => setSelected(undefined)}
-          open={selected ? true : false}
+          onClose={() => setToDelete(undefined)}
+          open={toDelete ? true : false}
         >
           <DialogTitle>Deseja excluir ?</DialogTitle>
           <DialogContent>
@@ -65,19 +79,24 @@ function CardsList({ reload }: Props) {
               autoFocus
               style={{ color: "#e74c3c" }}
               onClick={() => {
-                selected && handleDelete(selected);
+                toDelete && handleDelete(toDelete.id);
               }}
             >
               Excluir
             </Button>
             <Button
-              onClick={() => setSelected(undefined)}
+              onClick={() => setToDelete(undefined)}
               style={{ color: "#a4a4a4" }}
             >
               Cancelar
             </Button>
           </DialogActions>
         </Dialog>
+        <EditForm
+          editData={selected}
+          setEditData={setSelected}
+          setReload={setReload}
+        />
 
         {countries
           .map((item) => (
@@ -93,13 +112,29 @@ function CardsList({ reload }: Props) {
                   <h3>{item.name}</h3>
                 </div>
                 <div>
-                  <IconButton aria-label="delete" size="small">
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    onClick={() =>
+                      setSelected({
+                        place: item.place,
+                        meta: item.meta,
+                        id: item.id,
+                        name: item.name,
+                        flag: item.flag,
+                      })
+                    }
+                  >
                     <EditIcon />
                   </IconButton>
                   <IconButton
                     aria-label="delete"
                     size="small"
-                    onClick={() => setSelected(item.id)}
+                    onClick={() =>
+                      setToDelete({
+                        id: item.id,
+                      })
+                    }
                   >
                     <CloseIcon />
                   </IconButton>

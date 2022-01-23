@@ -1,7 +1,7 @@
 type Body = {
-  name: string;
-  flag: string;
-  id?: number;
+  name?: string;
+  flag?: string;
+  id?: number ;
   meta: string;
   place: string;
 };
