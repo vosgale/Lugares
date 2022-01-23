@@ -7,7 +7,7 @@ import { LocalDB } from "../../pages/api/fetchers";
 import { useToast } from "../../contexts/ToastContext";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Button, DialogActions, DialogContent } from "@mui/material";
+import { Button, DialogActions, DialogContent, ListItem } from "@mui/material";
 
 type editData = {
   place: string;
@@ -27,7 +27,6 @@ function EditForm({ editData, setEditData, setReload }: Props) {
   const toast = useToast();
   const [place, setPlace] = useState<string>();
   const [meta, setMeta] = useState<string>();
-  console.log("dados vindos", editData);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -55,33 +54,34 @@ function EditForm({ editData, setEditData, setReload }: Props) {
         <DialogTitle>Editar Dados</DialogTitle>
         <form onSubmit={handleSubmit}>
           <DialogContent>
-            <FormControl>
-              <label>Local</label>
-              <TextField
-                id="outlined-size-small"
-                placeholder="Digite o local que deseja conhecer"
-                size="small"
-                defaultValue={editData?.place}
-                onBlur={(event) => setPlace(event.target.value)}
-                required
-              />
-            </FormControl>
-            <FormControl>
-              <label>Meta</label>
-              <InputMask
-                mask="99/9999"
-                maskChar={null}
-                required
-                id="outlined-size-small"
-                placeholder="mês/ano"
-                defaultValue={editData?.meta}
-                onChange={(event) => setMeta(event.target.value)}
-              >
-                {(inputProps: any) => (
-                  <TextField size="small" {...inputProps} />
-                )}
-              </InputMask>
-            </FormControl>
+            <Styled.EditForm>
+              <FormControl className="editForm--inputs">
+                <TextField
+                  id="outlined-size-small"
+                  placeholder="Digite o local que deseja conhecer"
+                  size="small"
+                  label="Local"
+                  defaultValue={editData?.place}
+                  onBlur={(event) => setPlace(event.target.value)}
+                  required
+                />
+              </FormControl>
+              <FormControl className="editForm--inputs">
+                <InputMask
+                  mask="99/9999"
+                  maskChar={null}
+                  required
+                  id="outlined-size-small"
+                  placeholder="mês/ano"
+                  defaultValue={editData?.meta}
+                  onChange={(event) => setMeta(event.target.value)}
+                >
+                  {(inputProps: any) => (
+                    <TextField size="small" label="Meta" {...inputProps} />
+                  )}
+                </InputMask>
+              </FormControl>
+            </Styled.EditForm>
           </DialogContent>
           <DialogActions>
             <Button

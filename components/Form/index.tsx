@@ -66,7 +66,7 @@ function Form({ visible, setReload }: Props) {
       <Styled.FormContainer visible={visible}>
         <form onSubmit={handleSubmit} ref={formRef}>
           <FormControl variant="outlined">
-            <label>Países</label>
+            <label className="custom-label">Países</label>
             <Select
               native
               disabled={isLoading ?? false}
@@ -85,7 +85,7 @@ function Form({ visible, setReload }: Props) {
             </Select>
           </FormControl>
           <FormControl>
-            <label>Local</label>
+            <label className="custom-label">Local</label>
             <TextField
               disabled={!selectedCountry}
               id="outlined-size-small"
@@ -96,7 +96,7 @@ function Form({ visible, setReload }: Props) {
             />
           </FormControl>
           <FormControl>
-            <label>Meta</label>
+            <label className="custom-label">Meta</label>
             <InputMask
               mask="99/9999"
               maskChar={null}

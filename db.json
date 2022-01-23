@@ -1,20 +1,6 @@
 {
   "countries": [
     {
-      "meta": "11/2023",
-      "place": "Rammstein",
-      "name": "Argentina",
-      "flag": "https://flagcdn.com/ar.svg",
-      "id": 3
-    },
-    {
-      "name": "Argentina",
-      "flag": "https://flagcdn.com/ar.svg",
-      "place": "Capital",
-      "meta": "11/2033",
-      "id": 4
-    },
-    {
       "name": "Aruba",
       "flag": "https://flagcdn.com/aw.svg",
       "place": "11o",
@@ -29,20 +15,6 @@
       "id": 6
     },
     {
-      "name": "Estados Unidos",
-      "flag": "https://flagcdn.com/us.svg",
-      "place": "New York",
-      "meta": "11/2022",
-      "id": 7
-    },
-    {
-      "name": "Território Britânico do Oceano íÍdico",
-      "flag": "https://flagcdn.com/io.svg",
-      "place": "Stambul",
-      "meta": "11/1111",
-      "id": 8
-    },
-    {
       "name": "Zimbabwe",
       "flag": "https://flagcdn.com/zw.svg",
       "place": "oodk",
@@ -50,32 +22,11 @@
       "id": 9
     },
     {
-      "name": "Malawi",
-      "flag": "https://flagcdn.com/mw.svg",
-      "place": "okdsokosd",
-      "meta": "03/0303",
-      "id": 10
-    },
-    {
-      "name": "Noruega",
-      "flag": "https://flagcdn.com/no.svg",
-      "place": "oaskoask",
-      "meta": "20/2020",
-      "id": 11
-    },
-    {
-      "name": "Moçambique",
-      "flag": "https://flagcdn.com/mz.svg",
-      "place": "isisaji",
-      "meta": "93/9939",
-      "id": 12
-    },
-    {
-      "meta": "11/2023",
+      "name": "Armênia",
+      "flag": "https://flagcdn.com/am.svg",
       "place": "Rammstein",
-      "name": "Argentina",
-      "flag": "https://flagcdn.com/ar.svg",
-      "id": 13
+      "meta": "11/1111",
+      "id": 14
     }
   ]
 }

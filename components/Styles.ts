@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 interface Props {
   visible: Boolean;
 }
-//TopBar=================================================
 export const TopBar = styled.header`
   position: sticky;
   top: 0;
@@ -133,4 +132,16 @@ export const Card = styled.div`
       }
     }
   }
+`;
+export const EditForm = styled.div`
+display: flex;
+gap: 20px;
+max-width: 500px;
+justify-content: center;
+.editForm--inputs{
+  width: 100%;
+}
+@media(max-width: 400px){
+  flex-wrap: wrap;
+}
 `;

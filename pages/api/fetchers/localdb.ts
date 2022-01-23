@@ -1,12 +1,10 @@
 type Body = {
   name?: string;
   flag?: string;
-  id?: number ;
+  id?: number;
   meta: string;
   place: string;
 };
-
-
 export const CREATE = async (body: Body) =>
   fetch("http://localhost:3002/countries", {
     method: "POST",
@@ -39,10 +37,3 @@ export const DELETE = async (id: number) =>
       "Content-Type": "application/json",
     },
   });
-// .then((response) => response.json())
-// .then((data) => {
-//   console.log("Success:", data);
-// })
-// .catch((error) => {
-//   console.error("Error:", error);
-// });

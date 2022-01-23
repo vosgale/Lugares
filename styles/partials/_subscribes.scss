@@ -14,16 +14,13 @@
       border-color: transparent !important;
     }
   }
-  // @media (max-width: 800px) {
-  //   height: 35px;
-  // }
 }
 .css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
   max-height: 200px !important;
 }
 .MuiFormControl-root {
   position: relative;
-  label {
+  .custom-label {
     position: absolute;
     top: -20px;
     color: #ffff;
