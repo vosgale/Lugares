@@ -12,7 +12,7 @@ function Layout() {
       <ToastProvider>
         <Styled.Layout>
           <TopBar isOpen={isOpen} setIsOpen={setIsOpen} />
-          <Form visible={isOpen} setReload={setReload} />
+          <Form visible={isOpen} setReload={setReload} setVisible={setIsOpen} />
           <CardsList reload={reload} setReload={setReload} />
         </Styled.Layout>
       </ToastProvider>

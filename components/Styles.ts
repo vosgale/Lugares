@@ -6,7 +6,7 @@ interface Props {
 export const TopBar = styled.header`
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 15;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,6 +36,7 @@ export const FormContainer = styled.div<Props>`
   background-color: #4f9419;
   height: 203px;
   width: 100%;
+  z-index: 10;
   padding: 70px 4.861vw 60px 4.861vw;
   form {
     display: grid;
@@ -44,7 +45,13 @@ export const FormContainer = styled.div<Props>`
     width: 100%;
     column-gap: 2.361vw;
     grid-template-columns: 21.042vw 31.597vw 16.528vw 14.097vw;
+    @media(min-width: 1920px){
+    max-width: 1920px;
+    grid-template-columns: 450px 500px 300px 350px;
+    margin: 0 auto;
   }
+  }
+ 
   @media (max-width: 600px) {
     ${({ visible }) =>
       !visible &&
@@ -89,6 +96,8 @@ export const CardsContainer = styled.section`
   gap: 30px;
   padding: 50px 30px;
   justify-content: center;
+  max-width: 1920px;
+  margin: 0 auto;
 `;
 export const Card = styled.div`
   /* height: 16.361vw; */
@@ -126,7 +135,11 @@ export const Card = styled.div`
     font-weight: 400;
     padding: 43px 6px 50px;
     line-height: 18.75px;
+    width: 100%;
     p {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &:nth-child(1) {
         margin-bottom: 11px;
       }

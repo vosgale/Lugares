@@ -10,13 +10,14 @@ import { useToast } from "../../contexts/ToastContext";
 type Props = {
   visible: boolean;
   setReload: any;
+  setVisible: any;
 };
 type Countries = {
   name: string;
   flag: string;
 };
 
-function Form({ visible, setReload }: Props) {
+function Form({ visible, setVisible, setReload }: Props) {
   const [place, setPlace] = useState("");
   const [meta, setMeta] = useState("");
   const [countries, setCountries] = useState<Countries[]>([]);
@@ -55,6 +56,7 @@ function Form({ visible, setReload }: Props) {
     };
     const create = await LocalDB.CREATE(values);
     if (create.status === 201) {
+      setVisible(false);
       toast("Local adicionado a agenda", "success");
       formRef.current?.reset();
       resetForm();
